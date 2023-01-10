@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>triton.client</groupId>
-    <artifactId>java-api</artifactId>
+    <artifactId>neubla-triton-client</artifactId>
     <version>0.0.1</version>
     <name>triton_java_api</name>
     <packaging>jar</packaging>
-    <description>Java API for Triton Inference server.</description>
+    <description>Java API for Triton Inference server by Neubla.</description>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
 
@@ -31,79 +31,32 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.13.4.2</version>
+            <version>2.14.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>30.1.1-jre</version>
+            <version>31.1-jre</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>build-SimpleInferClient</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
                         </goals>
-                        <configuration>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                            <archive>
-                                <manifest>
-                                    <mainClass>triton.client.examples.SimpleInferClient</mainClass>
-                                </manifest>
-                            </archive>
-                            <finalName>SimpleInferClient</finalName>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <outputDirectory>${dir}</outputDirectory>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>build-SimpleInferPerf</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                            <archive>
-                                <manifest>
-                                    <mainClass>triton.client.examples.SimpleInferPerf</mainClass>
-                                </manifest>
-                            </archive>
-                            <finalName>SimpleInferPerf</finalName>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <outputDirectory>${dir}</outputDirectory>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>build-MemoryGrowthTest</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                            <archive>
-                                <manifest>
-                                    <mainClass>triton.client.examples.MemoryGrowthTest</mainClass>
-                                </manifest>
-                            </archive>
-                            <finalName>MemoryGrowthTest</finalName>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <outputDirectory>${dir}</outputDirectory>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
